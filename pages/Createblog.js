@@ -33,8 +33,7 @@ useEffect ((user)=>{
            // postedBy:,
              createdAt:serverTimestamp()
         };
-        //await setDoc(doc(db, "blogs", $uuidv4 ), docData);
-        // await setDoc(doc(db, `blogs/${uuidv4()}` ), docData);
+        
         await setDoc(doc(db, `blogs/${uuidv4()}` ), docData);
         M.toast({html: 'Blog Created',classes:"green"})   
        }
