@@ -7,14 +7,27 @@ import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
-import profilePic from "../public/hp.jpg";
-
-export default function Home() {
+export default function Home({Allblogs}) {
  
 
   return (
     <div className="center">
-     
+     {Allblogs.map(blog=>{
+          return(
+            <div className="card" key={blog.createdAt}>
+            <div className="card-image">
+              <img src={blog.imageUrl} />
+              <span className="card-title">{blog.titleb}</span>
+            </div>
+            <div className="card-content">
+              <p>{blog.bodyb}</p>
+            </div>
+            <div className="card-action">
+              <Link href={`/blog/${blog.id}`}><a>Read More</a></Link>
+            </div>
+          </div>
+          )
+        })}
 
       
 
@@ -74,18 +87,30 @@ export default function Home() {
 
 export async function getServerSideProps(context) {
   const storageRef = collection(db,'blogs');
-  const q =query(collection(db, 'blogs'))
-  // orderBy('titleb', "desc"), limit(3))
+  const q =query(collection(db, "blogs"),orderBy('titleb', "desc"), limit(3));
   const querySnapshot = await getDocs(q);
  // console.log(q)
- console.log('fwejrghweir')
-  console.log(storageRef)
-  const Allblogs = querySnapshot.forEach(doc => doc.bodyb)
-    console.log(Allblogs)
+ 
+  // console.log(storageRef)
+  const Allblogs=[];
+   querySnapshot.forEach(doc => {
+    Allblogs.push({...doc.data(),
+      createdAt:doc.data().createdAt.toMillis(),id:doc.id})
+   
+  }
+    
+    // return {
+    //   ...doc.data(),
+    //   createdAt:doc.data().createdAt.toMillis(),
+    //   id:doc.id
+    // }
+  // }
+  ) ;
+    
 
     return {
       props: {
-             
+        Allblogs
       },
     }
   
