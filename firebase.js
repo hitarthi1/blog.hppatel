@@ -26,6 +26,7 @@ const auth = getAuth();
 
 const db = getFirestore();
 
+
 const storage = getStorage(app);
 
  const serverTimestamp = getFirestore.serverTimestamp

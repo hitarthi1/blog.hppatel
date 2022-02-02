@@ -1,11 +1,13 @@
 
 import { useState,useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import {storage,db} from '../firebase'
+import {storage,db,auth} from '../firebase'
 import { getStorage, ref,uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
 import { async } from '@firebase/util';
 import {  serverTimestamp } from "firebase/firestore";
+
+
 
 
 export default function Createblog({user}) {
@@ -15,13 +17,16 @@ export default function Createblog({user}) {
     const [url,setUrl] = useState('')
     
 
+const users = auth.currentUser;
+
 
 
 useEffect ((user)=>{
 
    
 //      
-    async function upload(user){      
+    async function upload(user){  
+         
         const docData = {
         //    titleb: {title},
         //     bodyb:{body},
@@ -30,7 +35,7 @@ useEffect ((user)=>{
             titleb:title,
             bodyb:body,
             imageUrl:url,
-           // postedBy:,
+            postedBy:users.uid,
              createdAt:serverTimestamp()
         };
         

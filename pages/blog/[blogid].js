@@ -1,28 +1,37 @@
 import {useState} from 'react'
-import {db} from '../../firebase'
+import { v4 as uuidv4 } from 'uuid';
+import {db,auth} from '../../firebase'
 import {useRouter} from 'next/router'
 
-import { collection, doc, getDoc, setDoc , query, where  } from "firebase/firestore";
 
-export default function Blogpage({blogg,user}) {
+import { collection, doc, getDoc, setDoc , query, where ,lim, getDocs } from "firebase/firestore";
 
-    // const [myComment,setMyComment] = useState('')
-    //  const [allCommentsBlog,setAllComments] = useState(allComments)
-    //  const router = useRouter()
-    //  const { blogid } = router.query
-    //  //console.log (router.query)
-    //  const makeCommet = async ()=>{
-    //      const docData={
-    //         text:myComment,
-    //         name:user.displayName
-    //     }; 
-    //     await setDoc(collection(db, `blogs/${blogid}`,'comments' ),docData );
-    //      const getSnap = await getDoc(cmmm);
+export default function Blogpage({blogg,user,allComments}) {
+
+    const [myComment,setMyComment] = useState('')
+     const [allCommentsBlog,setAllComments] = useState(allComments)
+     const router = useRouter()
+     
+const users = auth.currentUser;
+     //const { blogid } = router.query.Blogid
+       console.log ('omamajo',router.query.Blogid);
+
+     const makeCommet = async ()=>{
+         const docData={
+            text:myComment,
+          name:users.uid
+        }; 
+        const docRef = doc(db,  "blogs",`${router.query.Blogid}` );
+        //const docuref =collection(db, "blogs",`${blogid}`,"comments");
+        const cmmm=await setDoc(doc(docRef,"comments",`${uuidv4()}` ),docData );
+
+        const cnn = collection(db,  "blogs",`${router.query.Blogid}`,"comments" );
+         const getSnap = await getDocs(cnn);
  
-    //  const allCommentsB = [];
-    //   getSnap.docs.forEach(doc => {
-    //      allCommentsB.push({...doc.data(),createdAt:doc.data().createdAt.toMillis(),id:doc.id})});
-    //     setAllComments(allCommentsB) }
+     const allCommentsB = [];
+      getSnap.forEach((doc) => {
+         allCommentsB.push({...doc.data(),id:doc.id})});
+        setAllComments(allCommentsB) }
 
     return (
         <div className="container center">
@@ -37,7 +46,7 @@ export default function Blogpage({blogg,user}) {
           </div>
           )
         })}
-{/* 
+
              {user?
              <>
              <div className="input-field">
@@ -56,7 +65,7 @@ export default function Blogpage({blogg,user}) {
                 {allCommentsBlog.map(item=>{
                     return <h6 key={item.name}><span>{item.name}</span> {item.text}</h6>
                 })}
-             </div> */}
+             </div>
 
             <style jsx global>
                 {`
@@ -77,10 +86,18 @@ export default function Blogpage({blogg,user}) {
      )
 }
 
-export async function getServerSideProps({params:{blogid}}) {
-   
-   const ab={blogid}
-     const docRef = doc(db,  'blogs','9840dc06-4a6e-4484-b1a8-1340d634f5ab' );
+export async function getServerSideProps({ params }) {
+  
+  const  Blogid= params.Blogid
+  
+  
+
+
+
+  //console.log(`${Blogid}`);
+
+     const docRef = doc(db,  "blogs",`${Blogid}` );
+
 
     const docSnap = await getDoc(docRef);
     const blogg =[];
@@ -90,21 +107,21 @@ if (docSnap.exists()) {
         createdAt:docSnap.data().createdAt.toMillis(),
         id:docSnap.id})
 
-    console.log("Document data:", docSnap.data());
+   // console.log("Document data:", docSnap.data());
   } else {
     console.log("No such document!");
   }
-       
+      
 
-    //     const cmmm =  doc(collection(db, `blogs/9840dc06-4a6e-4484-b1a8-1340d634f5ab`,'comments' ));
-    //      const getSnap = await getDoc(cmmm);
-    // const allComments = [];
-    //  getSnap.forEach(doc => {
-    //     allComments.push({...doc.data(),createdAt:doc.data().createdAt.toMillis(),id:doc.id})
-    // });
+        const cmmm =  collection(db,"blogs", `${Blogid}` ,'comments' );
+         const getSnap = await getDocs(cmmm);
+     const allComments = [];
+     getSnap.forEach(doc => {
+        allComments.push({...doc.data(),id:doc.id})
+    });
     return {
       props: {
-          blogg
+          blogg,allComments
       },
     }
   }
