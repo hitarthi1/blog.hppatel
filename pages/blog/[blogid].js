@@ -14,7 +14,13 @@ import {
   lim,
   getDocs,
 } from "firebase/firestore";
-import { Center, Container } from "@chakra-ui/react";
+import { Box,
+  Container,
+  Text,
+  Circle,
+  Heading,
+  Center,
+  Image } from "@chakra-ui/react";
 
 export default function Blogpage({ blogg, user, allComments }) {
   const [myComment, setMyComment] = useState("");
