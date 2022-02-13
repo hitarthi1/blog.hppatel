@@ -54,7 +54,7 @@ export default function Blogpage({ blogg, user, allComments }) {
                
               </div>
             </span>
-            <img src={blogg.imageUrl} alt={blogg.titleb} />
+            <img src={blogg.imageUrl} boxSize="220px" alt={blogg.titleb} />
 
             <p className="card-content black-text "> {blogg.bodyb}</p>
           </div>
