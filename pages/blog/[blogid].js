@@ -71,7 +71,7 @@ export default function Blogpage({ blogg, user, allComments }) {
             </HStack>
           );
         })}
-      </Container>
+     
       {user ? (
         <>
           <div className="input-field">
@@ -116,6 +116,7 @@ export default function Blogpage({ blogg, user, allComments }) {
           }
         `}
       </style>
+      </Container>
     </div>
   );
 }
