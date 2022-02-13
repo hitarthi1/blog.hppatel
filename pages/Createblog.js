@@ -127,7 +127,7 @@ useEffect ((user)=>{
             
             />
             <div className="file-field input-field">
-                <div className="btn #fb8c00 orange darken-1">
+                <div className="btn #000000 black">
                     <span>File</span>
                     <input type="file"  onChange={(e)=>setImage(e.target.files[0])} />
                 </div>
@@ -136,7 +136,7 @@ useEffect ((user)=>{
                     <input className="file-path validate" type="text" />
                 </div>
             </div>
-             <button className="btn #fb8c00 orange darken-1" onClick={()=>SubmitDetails()}>Submit Post</button>
+             <button className="btn #000000 black" onClick={()=>SubmitDetails()}>Submit Post</button>
 
              <style jsx>
                  {`

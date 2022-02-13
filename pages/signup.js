@@ -44,7 +44,7 @@ export default function Signup() {
                      <input type="email" placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
                      <input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                  </div>
-                 <button type="submit" className="btn #fb8c00 orange darken-1">Signup</button>
+                 <button type="submit" className="btn #000000 black">Signup</button>
                 <Link href="/login"><a><h5>Already have an account</h5></a></Link>
              </form>
             
