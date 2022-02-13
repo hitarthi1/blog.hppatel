@@ -2,7 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { db, auth } from "../../firebase";
 import { useRouter } from "next/router";
-import Image from "next/image";
+//import Image from "next/image";
 
 import {
   collection,
@@ -57,9 +57,9 @@ export default function Blogpage({ blogg, user, allComments }) {
 
       <Container>
         <Center>
-        {blogg.map((blogg) => {
+        {blogg.map((blogg,i) => {
         return (
-          <Text>{blogg.titleb}</Text>
+          <Text key={i}>{blogg.titleb}</Text>
         )})}
         </Center>
       </Container>
