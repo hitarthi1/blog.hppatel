@@ -2,7 +2,18 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { db, auth } from "../../firebase";
 import { useRouter } from "next/router";
-import Image from "next/image";
+//import Image from "next/image";
+import {
+  Box,
+  Container,
+  Text,
+  Circle,
+  Heading,
+  Center,
+  Image,
+  Button,
+} from "@chakra-ui/react";
+import { Stack, HStack, VStack } from "@chakra-ui/react";
 
 import {
   collection,
@@ -23,6 +34,7 @@ export default function Blogpage({ blogg, user, allComments }) {
   const users = auth.currentUser;
   //const { blogid } = router.query.Blogid
   console.log("omamajo", router.query.Blogid);
+  console.log(blogg);
 
   const makeCommet = async () => {
     const docData = {
@@ -45,30 +57,21 @@ export default function Blogpage({ blogg, user, allComments }) {
 
   return (
     <div className="container center">
-      {blogg.map((blogg) => {
-        return (
-          <div className="card " key={blogg.id}>
-            <span className="card-title    orange-text  #e65100-text text-darken-4 ">
-              <div className="row">
-                <div className="col s3">
-                  {new Date(blogg.createdAt).toDateString()}
-                </div>
-                <div className="col s6"> {blogg.titleb}</div>
-              </div>
-            </span>
-            {/* <Image
-       
-              src={blogg.imageUrl}
-              alt="Picture of the author"
-              width={500}
-              height={500}
-            /> */}
-
-            <p className="card-content black-text "> {blogg.bodyb}</p>
-          </div>
-        );
-      })}
-
+      <Container>
+        {blogg.map((blogg) => {
+          return (
+            <HStack key={blogg.createdAt} spacing="50px">
+              <Box w="90px" h="40px">
+                <Text>{new Date(blogg.createdAt).toDateString()}</Text>
+              </Box>
+            
+              <Box w="40px" h="40px">
+                <Text>#yyyyyyyy</Text>
+              </Box>
+            </HStack>
+          );
+        })}
+      </Container>
       {user ? (
         <>
           <div className="input-field">
@@ -152,3 +155,22 @@ export async function getServerSideProps({ params }) {
     },
   };
 }
+//<div className="card " key={blogg.id}>
+/* <span className="card-title    orange-text  #e65100-text text-darken-4 ">
+<div className="row">
+  <div className="col s3">
+    {new Date(blogg.createdAt).toDateString()}
+  </div>
+  <div className="col s6"> {blogg.titleb}</div>
+</div>
+</span>
+{/* <Image
+
+src={blogg.imageUrl}
+alt="Picture of the author"
+width={500}
+height={500}
+/> */
+
+// <p className="card-content black-text "> {blogg.bodyb}</p>
+// </div> */}
