@@ -4,7 +4,7 @@ import Link from 'next/link'
 import {auth} from '../firebase'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 
-export default function login() {
+export default function Login() {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
