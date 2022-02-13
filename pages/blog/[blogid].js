@@ -14,6 +14,7 @@ import {
   lim,
   getDocs,
 } from "firebase/firestore";
+import { Center, Container } from "@chakra-ui/react";
 
 export default function Blogpage({ blogg, user, allComments }) {
   const [myComment, setMyComment] = useState("");
@@ -47,25 +48,20 @@ export default function Blogpage({ blogg, user, allComments }) {
   return (
     
     <div className="container center">
-    {blogg.map((blogg) => {
-        return (<>
-        <h2>{blogg.titleb}</h2>
-          <h5>Created On - {new Date(blogg.createdAt).toDateString()}</h5>
-          <img src={blogg.imageUrl} alt={blogg.titleb} />
-          <p>{blogg.bodyb}</p>
-          </>)})}
+
+      <Container>
+        <Center>
+        {blogg.map((blogg) => {
+        return (
+          <Text>{blogg.titleb}</Text>
+        )})}
+        </Center>
+      </Container>
+   
 
      
 
-      <div className="left-align">
-        {allCommentsBlog.map((item) => {
-          return (
-            <h6 key={item.name}>
-              <span>{item.name}</span> {item.text}
-            </h6>
-          );
-        })}
-      </div>
+     
 
       <style jsx global>
         {`

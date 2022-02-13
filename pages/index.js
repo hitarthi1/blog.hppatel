@@ -167,6 +167,7 @@ export default function Home({ Allblogs }) {
           })}
         </HStack>
       </Container>
+
       <Container>
         <VStack spacing="50px">
           {Allblogs.map((blog, i) => {
@@ -188,6 +189,7 @@ export default function Home({ Allblogs }) {
           })}
         </VStack>
       </Container>
+      
       <style jsx>
         {`
           .card {
