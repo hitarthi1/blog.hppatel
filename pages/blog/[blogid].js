@@ -55,25 +55,7 @@ export default function Blogpage({ blogg, user, allComments }) {
           <p>{blogg.bodyb}</p>
           </>)})}
 
-      {user ? (
-        <>
-          <div className="input-field">
-            <input
-              type="text"
-              placeholder="add a comment"
-              value={myComment}
-              onChange={(e) => setMyComment(e.target.value)}
-            />
-          </div>
-          <button className="btn #000000 black" onClick={() => makeCommet()}>
-            Make comment
-          </button>
-        </>
-      ) : (
-        <h3 className="card-content black-text ">
-          Please login to make comments
-        </h3>
-      )}
+     
 
       <div className="left-align">
         {allCommentsBlog.map((item) => {
