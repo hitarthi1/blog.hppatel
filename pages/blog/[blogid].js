@@ -2,6 +2,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { db, auth } from "../../firebase";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import {
   collection,
@@ -46,15 +47,22 @@ export default function Blogpage({ blogg, user, allComments }) {
     <div className="container center">
       {blogg.map((blogg) => {
         return (
-          <div className="card " key={blogg.createdAt}>
+          <div className="card " key={blogg.id}>
             <span className="card-title    orange-text  #e65100-text text-darken-4 ">
               <div className="row">
-                <div className="col s3"> {new Date(blogg.createdAt).toDateString()}</div>
+                <div className="col s3">
+                  {new Date(blogg.createdAt).toDateString()}
+                </div>
                 <div className="col s6"> {blogg.titleb}</div>
-               
               </div>
             </span>
-            <img src={blogg.imageUrl} boxSize="220px" alt={blogg.titleb} />
+            {/* <Image
+       
+              src={blogg.imageUrl}
+              alt="Picture of the author"
+              width={500}
+              height={500}
+            /> */}
 
             <p className="card-content black-text "> {blogg.bodyb}</p>
           </div>
@@ -77,7 +85,7 @@ export default function Blogpage({ blogg, user, allComments }) {
         </>
       ) : (
         <h3 className="card-content black-text ">
-          please login to make comments
+          Please login to make comments
         </h3>
       )}
 
