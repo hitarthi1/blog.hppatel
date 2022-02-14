@@ -66,7 +66,7 @@ export default function Blogpage({ blogg, user, allComments }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const Blogid = params.Blogid;
+  const Blogid = params.blogid;
 
   console.log(Object.values(params));
 
