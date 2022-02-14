@@ -56,7 +56,18 @@ export default function Blogpage({ blogg, user, allComments }) {
     <div  className="center">
 
 
-   <h1> ui rendet</h1>  
+   <h1> ui rendet</h1> 
+   <div>
+   {blogg.map((blogg,i) => {
+        return (
+        <div key={i} >
+        <h2>{blogg.titleb}</h2>
+          <h5>Created On - {new Date(blogg.createdAt).toDateString()}</h5>
+          <img src={blogg.imageUrl} alt={blogg.titleb} />
+          <p>{blogg.bodyb}</p>
+          </div>)})}
+          </div>
+     
 
      
 
