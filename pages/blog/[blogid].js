@@ -31,35 +31,17 @@ export default function Blogpage({ blogg, user, allComments }) {
 
   useEffect(() => {
     if (!router.isReady) return;
-    console.log("omamajo", router.query.Blogid);
+    console.log("omamajo", router.query);
   }, [router.isReady]);
 
   const users = auth.currentUser;
-  const { blogid } = router.query.Blogid;
-  console.log("omamajo", router.query.Blogid);
+  //const { blogid } = router.query.Blogid;
+  console.log("omamajo", router.query);
 
   let blog = blogg[0];
   console.log(blog);
 
-  const makeCommet = async () => {
-    const docData = {
-      text: myComment,
-      name: users.uid,
-    };
-    const docRef = doc(db, "blogs", `${router.query.Blogid}`);
-    //const docuref =collection(db, "blogs",`${blogid}`,"comments");
-    const cmmm = await setDoc(doc(docRef, "comments", `${uuidv4()}`), docData);
-
-    const cnn = collection(db, "blogs", `${router.query.Blogid}`, "comments");
-    const getSnap = await getDocs(cnn);
-
-    const allCommentsB = [];
-    getSnap.forEach((doc) => {
-      allCommentsB.push({ ...doc.data(), id: doc.id });
-    });
-    setAllComments(allCommentsB);
-  };
-
+  
   return (
     <div className="center">
       <h1> ui rendet</h1>
