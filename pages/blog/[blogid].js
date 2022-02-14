@@ -28,7 +28,7 @@ export default function Blogpage({ blogg, user, allComments }) {
   const router = useRouter();
 
   const users = auth.currentUser;
-  //const { blogid } = router.query.Blogid
+  const { blogid } = router.query.Blogid
   console.log("omamajo", router.query.Blogid);
   
   let blog = blogg[0];
@@ -91,9 +91,13 @@ export default function Blogpage({ blogg, user, allComments }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const Blogid = params.Blogid;
+ const Blogid = params.Blogid;
+ 
+  
+   console.log(Object.values(params));
 
-  //console.log(`${Blogid}`);
+  console.log("1",`${Blogid}`);
+  console.log(  "2",`${params.Blogid}`);
 
   const docRef = doc(db, "blogs", `${Blogid}`);
 
