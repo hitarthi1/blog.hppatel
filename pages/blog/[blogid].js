@@ -30,7 +30,7 @@ export default function Blogpage({ blogg, user, allComments }) {
   const users = auth.currentUser;
   //const { blogid } = router.query.Blogid
   console.log("omamajo", router.query.Blogid);
-  blogg
+  
   let blog = blogg[0];
   console.log(blog)
 
