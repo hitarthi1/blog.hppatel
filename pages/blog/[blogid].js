@@ -30,7 +30,9 @@ export default function Blogpage({ blogg, user, allComments }) {
   const users = auth.currentUser;
   //const { blogid } = router.query.Blogid
   console.log("omamajo", router.query.Blogid);
-  console.log(  blogg)
+  blogg
+  let blog = blogg[0];
+  console.log(blog)
 
   const makeCommet = async () => {
     const docData = {
@@ -60,10 +62,10 @@ export default function Blogpage({ blogg, user, allComments }) {
    <div>
  
         <div >
-        <h2>{blogg.titleb}</h2>
-          <h5>Created On - {new Date(blogg.createdAt).toDateString()}</h5>
-          <img src={blogg.imageUrl} alt={blogg.titleb} />
-          <p>{blogg.bodyb}</p>
+        <h2>{blog.titleb}</h2>
+          <h5>Created On - {new Date(blog.createdAt).toDateString()}</h5>
+          <img src={blog.imageUrl} alt={blog.titleb} />
+          <p>{blog.bodyb}</p>
           </div>
           </div>
      
