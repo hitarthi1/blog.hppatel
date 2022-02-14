@@ -61,7 +61,7 @@ export default function Blogpage({ blogg, user, allComments }) {
 
   return (
     <div className="center">
-     
+      <div className="card ">
       {blogg.map((blogg) => {
         return (
           <div className="card " key={blogg.id}>
@@ -73,7 +73,7 @@ export default function Blogpage({ blogg, user, allComments }) {
                 <div className="col s6"> {blogg.titleb}</div>
               </div>
             </span>
-           
+            <img src={blogg.imageUrl} alt={blogg.title} />
 
             <p className="card-content black-text "> {blogg.bodyb}</p>
           </div>
@@ -98,7 +98,7 @@ export default function Blogpage({ blogg, user, allComments }) {
           </button>
         </>
       ) : (
-        <h3>please login to make comments</h3>
+        <h3>Please login to make comments</h3>
       )}
 
       <hr />
@@ -111,7 +111,7 @@ export default function Blogpage({ blogg, user, allComments }) {
           );
         })}
       </div>
-
+      </div>
       <style jsx global>
         {`
           .span {
