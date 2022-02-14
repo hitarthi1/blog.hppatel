@@ -61,7 +61,7 @@ export default function Blogpage({ blogg, user, allComments }) {
 
   return (
     <div className="center">
-      <h1> ui rendet</h1>
+     
       {blogg.map((blogg) => {
         return (
           <div className="card " key={blogg.id}>
@@ -91,7 +91,7 @@ export default function Blogpage({ blogg, user, allComments }) {
             />
           </div>
           <button
-            className="btn #fb8c00 orange darken-1"
+            className="btn #263238 blue-grey darken-4"
             onClick={() => makeCommet()}
           >
             Make comment
