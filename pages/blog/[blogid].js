@@ -53,19 +53,10 @@ export default function Blogpage({ blogg, user, allComments }) {
 
   return (
     
-    <div className="container center">
+    <div  className="center">
 
-      <Container>
-        <Center>
-        {blogg.map((blogg,i) => {
-        return (
-          <Text key={i}>{blogg.titleb}</Text>
-        )})}
-        </Center>
-      </Container>
-   
 
-     
+   <h1> ui rendet</h1>  
 
      
 
