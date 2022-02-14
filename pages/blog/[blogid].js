@@ -31,15 +31,15 @@ export default function Blogpage({ blogg, user, allComments }) {
 
   useEffect(() => {
     if (!router.isReady) return;
-    console.log("omamajo", router.query);
+    console.log("omamajo", router.query.blogid);
   }, [router.isReady]);
 
   const users = auth.currentUser;
   //const { blogid } = router.query.Blogid;
-  console.log("omamajo", router.query);
+ 
 
-  let blog = blogg[0];
-  console.log(blog);
+  console.log(   "blog", blogg);
+  console.log(   "comments", allComments);
 
   
   return (
