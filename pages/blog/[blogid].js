@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { db, auth } from "../../firebase";
 import { useRouter } from "next/router";
-import Image from "next/image";
+//import Image from "next/image";
 
 import {
   collection,
@@ -73,13 +73,7 @@ export default function Blogpage({ blogg, user, allComments }) {
                 <div className="col s6"> {blogg.titleb}</div>
               </div>
             </span>
-            <Image
-      loader={myLoader}
-      src={blogg.imageUrl}
-      alt="Picture of the author"
-      width={500}
-      height={500}
-    />
+           
 
             <p className="card-content black-text "> {blogg.bodyb}</p>
           </div>
@@ -97,7 +91,7 @@ export default function Blogpage({ blogg, user, allComments }) {
             />
           </div>
           <button
-            className="btn #000000 black"
+            className="btn #fb8c00 orange darken-1"
             onClick={() => makeCommet()}
           >
             Make comment
