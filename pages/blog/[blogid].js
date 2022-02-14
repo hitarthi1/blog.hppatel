@@ -14,25 +14,32 @@ import {
   lim,
   getDocs,
 } from "firebase/firestore";
-import { Box,
+import {
+  Box,
   Container,
   Text,
   Circle,
   Heading,
   Center,
-  Image } from "@chakra-ui/react";
+  Image,
+} from "@chakra-ui/react";
 
 export default function Blogpage({ blogg, user, allComments }) {
   const [myComment, setMyComment] = useState("");
   const [allCommentsBlog, setAllComments] = useState(allComments);
   const router = useRouter();
 
+  useEffect(() => {
+    if (!router.isReady) return;
+    console.log("omamajo", router.query.Blogid);
+  }, [router.isReady]);
+
   const users = auth.currentUser;
-  const { blogid } = router.query.Blogid
+  const { blogid } = router.query.Blogid;
   console.log("omamajo", router.query.Blogid);
-  
+
   let blog = blogg[0];
-  console.log(blog)
+  console.log(blog);
 
   const makeCommet = async () => {
     const docData = {
@@ -54,23 +61,9 @@ export default function Blogpage({ blogg, user, allComments }) {
   };
 
   return (
+    <div className="center">
+      <h1> ui rendet</h1>
     
-    <div  className="center">
-
-
-   <h1> ui rendet</h1> 
-   <div>
- 
-        <div >
-        <h2>{blog.titleb}</h2>
-          <h5>Created On - {new Date(blog.createdAt).toDateString()}</h5>
-          <img src={blog.imageUrl} alt={blog.titleb} />
-          <p>{blog.bodyb}</p>
-          </div>
-          </div>
-     
-
-     
 
       <style jsx global>
         {`
@@ -91,13 +84,12 @@ export default function Blogpage({ blogg, user, allComments }) {
 }
 
 export async function getServerSideProps({ params }) {
- const Blogid = params.Blogid;
- 
-  
-   console.log(Object.values(params));
+  const Blogid = params.Blogid;
 
-  console.log("1",`${Blogid}`);
-  console.log(  "2",`${params.Blogid}`);
+  console.log(Object.values(params));
+
+  console.log("1", `${Blogid}`);
+  console.log("2", `${params.Blogid}`);
 
   const docRef = doc(db, "blogs", `${Blogid}`);
 
@@ -130,8 +122,6 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-
-
 // {blogg.map((blogg) => {
 //   return (
 //     <div className="card " key={blogg.id}>
@@ -144,7 +134,7 @@ export async function getServerSideProps({ params }) {
 //         </div>
 //       </span>
 //       {/* <Image
- 
+
 //         src={blogg.imageUrl}
 //         alt="Picture of the author"
 //         width={500}
