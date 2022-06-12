@@ -33,31 +33,3 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
-
- nnpm run dev
-
-
-material ui
-
-
-        e.preventDefault()
-page refresh thai jay automatically?
-
-firbase/app
-  
-if(!firebase.apps.length)
-app apps su che aa badhu
-
-
-
-ama to script ne body ma nakhavu joia
-app.js ni vat karu chu
-
-script ma defer lagavo 25.9
-google api ma jaine kyathi request ave e fix karava mate
-waatch ss
-
-
-auth valo part last ma hato
-njnj
