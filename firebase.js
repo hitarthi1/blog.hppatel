@@ -6,14 +6,15 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+//console.log(process.env.API_KEY);
 
 var firebaseConfig = {
 
-  apiKey: "AIzaSyChMMtClZawzmKFx7bIMgA2pnSBYpbKZTM",
+  apiKey:`process.env.API_KEY`,
   authDomain: "portfolio-50472.firebaseapp.com",
   projectId: "portfolio-50472",
   storageBucket: "portfolio-50472.appspot.com",
-  messagingSenderId: "925088659403",
+  messagingSenderId: `process.env.MSID`,
   appId: "1:925088659403:web:77d7166150381b0eac284e",
   measurementId: "G-6187DSLT5S"
   };
